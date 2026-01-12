@@ -98,7 +98,7 @@ class Customer {
     }
 }
 
-public class A {
+public class Store {
     private static List<Product> inventory = new ArrayList<>();
     private static List<Customer> customers = new ArrayList<>();
     private static Scanner sc = new Scanner(System.in);
@@ -332,3 +332,4 @@ public class A {
         System.out.println("Purchase completed successfully!");
     }
 }
+
