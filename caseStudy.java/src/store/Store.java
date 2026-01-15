@@ -2,102 +2,6 @@ package store;
 
 import java.util.*;
 
-class Supplier {
-    private String name;
-    private double priceRating;
-    private double qualityRating;
-
-    public Supplier(String name, double priceRating, double qualityRating) {
-        this.name = name;
-        this.priceRating = priceRating;
-        this.qualityRating = qualityRating;
-    }
-
-    public String getName() { return name; }
-
-    @Override
-    public String toString() {
-        return String.format("%s (Price Rating: %.1f | Quality Rating: %.1f)",
-                name, priceRating, qualityRating);
-    }
-}
-
-class Product {
-    private String name;
-    private double price;
-    private int quantity;
-    private int reorderLevel;
-    private List<Supplier> suppliers;
-
-    public Product(String name, double price, int quantity, int reorderLevel, List<Supplier> suppliers) {
-        this.name = name;
-        this.price = price;
-        this.quantity = quantity;
-        this.reorderLevel = reorderLevel;
-        this.suppliers = suppliers;
-    }
-
-    public String getName() { return name; }
-    public double getPrice() { return price; }
-    public int getQuantity() { return quantity; }
-    public int getReorderLevel() { return reorderLevel; }
-    public List<Supplier> getSuppliers() { return suppliers; }
-
-    public void setPrice(double price) { this.price = price; }
-    public void setQuantity(int quantity) { this.quantity = quantity; }
-
-    public boolean isLowStock() {
-        return quantity <= reorderLevel;
-    }
-
-    public void checkReorderAlert() {
-        if (isLowStock()) {
-            System.out.println("⚠️  Reorder Alert: " + name + " is below threshold (" + quantity + " left).");
-        }
-    }
-
-    @Override
-    public String toString() {
-        return String.format("%-15s Price: ₹%.2f | Quantity: %d | Reorder Level: %d",
-                name, price, quantity, reorderLevel);
-    }
-}
-
-class Customer {
-    private String name;
-    private String type; // "good" or "normal"
-    private List<String> purchaseHistory;
-    private double discount;
-
-    public Customer(String name, String type) {
-        this.name = name;
-        this.type = type;
-        this.purchaseHistory = new ArrayList<>();
-        this.discount = type.equalsIgnoreCase("good") ? 0.05 : 0.0;
-    }
-
-    public String getName() { return name; }
-    public String getType() { return type; }
-
-    public void addPurchase(String product) {
-        purchaseHistory.add(product);
-        if (purchaseHistory.size() >= 3 && discount < 0.1) discount = 0.1;
-    }
-
-    public double getDiscount() { return discount; }
-
-    public void displayHistory() {
-        System.out.println("Customer: " + name + " (" + type + ")");
-        System.out.println("Purchase history: " + purchaseHistory);
-        System.out.println("Current discount: " + (discount * 100) + "%");
-    }
-
-    @Override
-    public String toString() {
-        return String.format("%-10s | Type: %-6s | Discount: %.0f%%", name, type, discount * 100);
-    }
-}
-
 public class Store {
     private static List<Product> inventory = new ArrayList<>();
     private static List<Customer> customers = new ArrayList<>();
@@ -332,5 +236,6 @@ public class Store {
         System.out.println("Purchase completed successfully!");
     }
 }
+
 
 
